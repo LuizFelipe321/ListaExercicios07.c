@@ -1,0 +1,102 @@
+/*Dois jogadores disputaram uma partida de jogo da velha. O primeiro jogador utiliza o símbolo
+O (bolinha) e o segundo utiliza o símbolo X. Inicialmente, o programa deve receber o nome dos
+dois jogadores. Em seguida, deve ser lido o estado final do tabuleiro, representado por uma
+matriz 3x3 contendo os caracteres 'O', 'X' ou '-' (posição vazia). Escreva um programa que analise
+a matriz e determine o resultado da partida. Caso exista uma linha, coluna ou diagonal preenchida
+inteiramente com O, o programa deverá informar que o jogador da bolinha venceu. Caso exista
+uma linha, coluna ou diagonal preenchida inteiramente com X, o programa deverá informar que
+o jogador do X venceu. Se não houver vencedor, o programa deverá informar que a partida
+terminou em velha (empate). O nome do jogador vencedor deve ser exibido na mensagem final.*/
+
+#include <stdio.h>
+
+int main() {
+    char jogadorO[50];
+    char jogadorX[50];
+    char tabuleiro[3][3];
+    int vencedor = 0;
+
+    printf("Nome do jogador O: ");
+    scanf("%s", jogadorO);
+
+    printf("Nome do jogador X: ");
+    scanf("%s", jogadorX);
+
+    printf("\nDigite o tabuleiro:\n");
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            scanf(" %c", &tabuleiro[i][j]);
+        }
+    }
+
+    // Linhas
+    for (int i = 0; i < 3; i++) {
+        if (tabuleiro[i][0] == 'O' &&
+            tabuleiro[i][1] == 'O' &&
+            tabuleiro[i][2] == 'O') {
+            printf("%s venceu!\n", jogadorO);
+            vencedor = 1;
+        }
+
+        if (tabuleiro[i][0] == 'X' &&
+            tabuleiro[i][1] == 'X' &&
+            tabuleiro[i][2] == 'X') {
+            printf("%s venceu!\n", jogadorX);
+            vencedor = 1;
+        }
+    }
+
+    // Colunas
+    for (int j = 0; j < 3; j++) {
+        if (tabuleiro[0][j] == 'O' &&
+            tabuleiro[1][j] == 'O' &&
+            tabuleiro[2][j] == 'O') {
+            printf("%s venceu!\n", jogadorO);
+            vencedor = 1;
+        }
+
+        if (tabuleiro[0][j] == 'X' &&
+            tabuleiro[1][j] == 'X' &&
+            tabuleiro[2][j] == 'X') {
+            printf("%s venceu!\n", jogadorX);
+            vencedor = 1;
+        }
+    }
+
+    // Diagonal principal
+    if (tabuleiro[0][0] == 'O' &&
+        tabuleiro[1][1] == 'O' &&
+        tabuleiro[2][2] == 'O') {
+        printf("%s venceu!\n", jogadorO);
+        vencedor = 1;
+    }
+
+    if (tabuleiro[0][0] == 'X' &&
+        tabuleiro[1][1] == 'X' &&
+        tabuleiro[2][2] == 'X') {
+        printf("%s venceu!\n", jogadorX);
+        vencedor = 1;
+    }
+
+    // Diagonal secundária
+    if (tabuleiro[0][2] == 'O' &&
+        tabuleiro[1][1] == 'O' &&
+        tabuleiro[2][0] == 'O') {
+        printf("%s venceu!\n", jogadorO);
+        vencedor = 1;
+    }
+
+    if (tabuleiro[0][2] == 'X' &&
+        tabuleiro[1][1] == 'X' &&
+        tabuleiro[2][0] == 'X') {
+        printf("%s venceu!\n", jogadorX);
+        vencedor = 1;
+    }
+
+    if (!vencedor) {
+        printf("Deu velha!\n");
+    }
+
+    return 0;
+}
